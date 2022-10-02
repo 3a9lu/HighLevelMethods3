@@ -16,65 +16,88 @@ namespace Lab3
             this.i = 0.0;
         }
 
-        public static Complex Sum(Complex a, Complex b)
+        public static Complex Sum(Complex first, Complex second)
         {
             Complex res = new Complex();
-            res.r = a.r + b.r;
-            res.i = a.i + b.i;
+            res.r = first.r + second.r;
+            res.i = first.i + second.i;
             return res;
         }
 
-        public static Complex operator +(Complex a, Complex b)
+        public static Complex operator +(Complex first, Complex second)
         {
-            return Complex.Sum(a, b);
+            return Complex.Sum(first, second);
         }
 
-        public static Complex Difference(Complex a, Complex b)
+        public static Complex Difference(Complex first, Complex second)
         {
             Complex res = new Complex();
-            res.r = a.r - b.r;
-            res.i = a.i - b.i;
+            res.r = first.r - second.r;
+            res.i = first.i - second.i;
             return res;
         }
 
-        public static Complex operator -(Complex a, Complex b)
+        public static Complex operator -(Complex first, Complex second)
         {
-            return Complex.Difference(a, b);
+            return Complex.Difference(first, second);
         }
 
-        public static Complex Multiplication(Complex a, Complex b)
+        public static Complex Multiplication(Complex first, Complex second)
         {
             Complex res = new Complex();
-            res.r = a.r * b.r - a.i * b.i;
-            res.i = a.i * b.r + a.r * b.i;
+            res.r = first.r * second.r - first.i * second.i;
+            res.i = first.i * second.r + first.r * second.i;
             return res;
         }
 
-        public static Complex operator *(Complex a, Complex b)
+        public static Complex operator *(Complex first, Complex second)
         {
-            return Complex.Multiplication(a, b);
+            return Complex.Multiplication(first, second);
         }
 
-        public static Complex Division(Complex a, Complex b)
+        public static Complex Division(Complex first, Complex second)
         {
             Complex res = new Complex();
-            res.r = (a.r * b.r + a.i * b.i) / (b.r * b.r + b.i * b.i);
-            res.i = (a.i * b.r - a.r * b.i) / (b.r * b.r + b.i * b.i);
+            res.r = (first.r * second.r + first.i * second.i) / 
+                (second.r * second.r + second.i * second.i);
+            res.i = (first.i * second.r - first.r * second.i) / 
+                (second.r * second.r + second.i * second.i);
             return res;
         }
 
-        public static Complex operator /(Complex a, Complex b)
+        public static Complex operator /(Complex first, Complex second)
         {
-            return Complex.Division(a, b);
+            return Complex.Division(first, second);
         }
 
-        public static bool operator ==(Complex a, Complex b)
+        public static bool operator ==(Complex first, Complex second)
         {
-            return a.r == b.r && a.i == b.i;
+            return first.r == second.r && first.i == second.i;
         }
+
         public static bool operator !=(Complex first, Complex second)
         {
-            return !(first == second);
+            return first.r != second.r || first.i != second.i;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (ReferenceEquals(obj, null))
+            {
+                return false;
+            }
+
+            throw new NotImplementedException();
+        }
+
+        public override int GetHashCode()
+        {
+            throw new NotImplementedException();
         }
     }
 }
